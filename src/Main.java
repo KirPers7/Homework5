@@ -16,20 +16,16 @@ public class Main {
         //Задание 2
         System.out.println("Задание 2");
 
-        short clientDeviceYear = 2014;
+        short clientDeviceYear = 2015;
 
-        if (clientOS == 0) {
-            if (clientDeviceYear < 2015) {
-                System.out.println("Установите облегченную версию приложения для iOS по ссылке");
-            } else {
-                System.out.println("Установите версию приложения для iOS по ссылке");
-            }
-        } else if (clientOS == 1) {
-            if (clientDeviceYear < 2015) {
-                System.out.println("Установите облегченную версию приложения для Android по ссылке");
-            } else {
-                System.out.println("Установите версию приложения для Android по ссылке");
-            }
+        if (clientOS == 0 && clientDeviceYear < 2015) {
+            System.out.println("Установите облегченную версию приложения для iOS по ссылке");
+        } else if (clientOS == 0 && clientDeviceYear >= 2015) {
+            System.out.println("Установите версию приложения для iOS по ссылке");
+        } else if (clientOS == 1 && clientDeviceYear < 2015) {
+            System.out.println("Установите облегченную версию приложения для Android по ссылке");
+        } else if (clientOS == 1 && clientDeviceYear >= 2015) {
+            System.out.println("Установите версию приложения для Android по ссылке");
         }
         System.out.println();
 
@@ -38,8 +34,14 @@ public class Main {
 
         short year = 2024;
         short yearCount = (short) ((year - 1584) % 4);
+        short leapYearExclude = (short) ((year - 1584) % 100);
+        short leapYearInclude = (short) ((year - 1584) % 400);
 
-        if (yearCount == 0 && year >= 1584) {
+        if (leapYearInclude == 0 && year >= 1584) {
+            System.out.println(year + " год является високосным");
+        } else if (leapYearExclude == 0 && year >= 1584) {
+            System.out.println(year + " год не является високосным");
+        } else if (yearCount == 0 && year >= 1584) {
             System.out.println(year + " год является високосным");
         } else {
             System.out.println(year + " год не является високосным");
